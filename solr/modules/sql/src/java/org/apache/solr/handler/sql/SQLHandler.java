@@ -20,13 +20,12 @@ import java.io.IOException;
 import java.lang.invoke.MethodHandles;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
+
+import com.google.common.collect.Lists;
 import org.apache.calcite.config.Lex;
+import org.apache.solr.api.AnnotatedApi;
+import org.apache.solr.api.Api;
 import org.apache.solr.client.solrj.io.Tuple;
 import org.apache.solr.client.solrj.io.comp.StreamComparator;
 import org.apache.solr.client.solrj.io.stream.ExceptionStream;
@@ -209,5 +208,15 @@ public class SQLHandler extends RequestHandlerBase
     adjustedParams.add(params);
     adjustedParams.add(CommonParams.OMIT_HEADER, "true");
     return adjustedParams;
+  }
+
+  @Override
+  public Collection<Api> getApis() {
+    return Lists.newArrayList(AnnotatedApi.getApis(new SQLAPI(this)));
+  }
+
+  @Override
+  public Boolean registerV2() {
+    return Boolean.TRUE;
   }
 }
