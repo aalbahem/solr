@@ -17,18 +17,18 @@
 
 package org.apache.solr.handler.sql;
 
+import static org.apache.solr.client.solrj.SolrRequest.METHOD.GET;
+
 import org.apache.solr.api.EndPoint;
 import org.apache.solr.request.SolrQueryRequest;
 import org.apache.solr.response.SolrQueryResponse;
 import org.apache.solr.security.PermissionNameProvider;
 
-import static org.apache.solr.client.solrj.SolrRequest.METHOD.GET;
-
 /**
  * V2 API for performing a SQL request to a solr collection.
  *
- * <p>This API (GET /api/collections/collectionName/sql) is analogous to the v1 GET /solr/collName/sql
- * API.
+ * <p>This API (GET /api/collections/collectionName/sql) is analogous to the v1 GET
+ * /solr/collName/sql API.
  */
 public class SQLAPI {
   private final SQLHandler sqlHandler;
